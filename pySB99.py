@@ -25,27 +25,27 @@ IMF_exponents = [1.3, 2.3]
 IMF_mass_limits = 0.1, 0.5, 120.
 
 #Variable interpolation resolution factor, lower for speed up or higher for higher resolution isochrone interpolation
-resolution_factor = 1
+run_speed_mode = 'FAST' #should take ~60s. Options include 'FAST' (takes ~20s, only recommended for tests and models <10Myr) and 'HIGH_RES' (takes a while but all outputs are have high resolution interpolation in mass)
 
-Z = 'Z0' #Z options are MWC, MW, LMC, SMC, IZw18 and Z0 (which correspond to Z=0.02, 0.014, 0.006, 0.002, 0.0004 and 0.0 respectively) although if the WMbasic OB models are used the spectra grid metallicities vary slightly)
-SPEC = 'FW' #options are FW and WM which refer to the Fastwind and WMbasic OB spectral libraries
-rot = False
+Z = 'MW' #Z options are MWC, MW, LMC, SMC, IZw18 and Z0 (which correspond to Z=0.02, 0.014, 0.006, 0.002, 0.0004 and 0.0 respectively) although if the WMbasic OB models are used the spectra grid metallicities vary slightly)
+SPEC = 'WM' #options are FW and WM which refer to the Fastwind and WMbasic OB spectral libraries
+rot = False #options are True to use tracks with 0.4v_critical rotation or False for non-rotating tracks
 
-plot_spec_with_time = True
-spec_with_time_title = 'Evolution of Z0 SEDs with rotation'
-plot_isochrones = True
 plot_ion_flux = True
-plot_spectral_types = True
-plot_hires_spectra = True
-plot_blackbody_scaling = True
-plot_SN_rate = True
-plot_new_hires = True
 plot_wind = True
 plot_uv_slope = True
 plot_ew = True
-plot_colours = True
 
-save_output = True
+save_output = False
+
+'''coming soon!'''
+plot_spec_with_time = False
+plot_isochrones = False
+plot_spectral_types = False
+plot_hires_spectra = False
+plot_SN_rate = False
+plot_new_hires = False
+plot_colours = False
 
 if save_output == True:
     SBmodel_name = 'pySB_test' #set the output folder name here!
@@ -542,7 +542,7 @@ WC_integrated_spectra = integrate_spec_grid(WC_reformed_spec_grid)
 WN_integrated_spectra_powr = integrate_spec_grid(WN_reformed_spec_grid_powr)
 WC_integrated_spectra_powr = integrate_spec_grid(WC_reformed_spec_grid_powr)
 
-def interpolate_param(tracks_parameter, track_masses):
+def interpolate_param(tracks_parameter, track_masses, run_speed_mode):
     '''
     Performs an interpolation between two adjacent tracks in evolutionary diagrams. This is done to create synthetic
     tracks for each mass in the grid to fill in the gaps offered by the tracks.
@@ -562,9 +562,22 @@ def interpolate_param(tracks_parameter, track_masses):
 
         initial_mass_upper = track_mass_upper[-1]
         initial_mass_lower = track_mass_lower[-1]
-
-        inter_track_sampling = ( initial_mass_upper - initial_mass_lower +1 ) * (resolution_factor / 1)
-
+        
+        if run_speed_mode == 'DEFAULT':
+            if round(initial_mass_upper) > 7 and round(initial_mass_upper) < 35:
+                inter_track_sampling = ( initial_mass_upper - initial_mass_lower +1 ) * 15
+            else:
+                inter_track_sampling = ( initial_mass_upper - initial_mass_lower +1 )
+                
+        if run_speed_mode == 'FAST':
+            inter_track_sampling = ( initial_mass_upper - initial_mass_lower +1 )
+            
+        if run_speed_mode == 'HIGH_RES':
+            if round(initial_mass_upper) > 7 and round(initial_mass_upper) < 35:
+                inter_track_sampling = ( initial_mass_upper - initial_mass_lower +1 ) * 100
+            else:
+                inter_track_sampling = ( initial_mass_upper - initial_mass_lower +1 ) * 50
+            
         track_masses_adjinterp = np.column_stack((track_mass_lower, track_mass_upper))
         track_param_adjinterp = np.column_stack((track_param_lower, track_param_upper))
 
@@ -591,22 +604,22 @@ def interpolate_param(tracks_parameter, track_masses):
 
     return grid_masses_adjinterp_total, grid_params_adjinterp_total
 
-grid_masses_adjinterp_total, grid_ages_adjinterp_total = interpolate_param(track_ages, track_masses)
+grid_masses_adjinterp_total, grid_ages_adjinterp_total = interpolate_param(track_ages, track_masses, run_speed_mode)
 
-grid_masses_adjinterp_total, grid_lums_adjinterp_total = interpolate_param(track_lums, track_masses)
+grid_masses_adjinterp_total, grid_lums_adjinterp_total = interpolate_param(track_lums, track_masses, run_speed_mode)
 
-grid_masses_adjinterp_total, grid_temps_adjinterp_total = interpolate_param(track_temps, track_masses)
+grid_masses_adjinterp_total, grid_temps_adjinterp_total = interpolate_param(track_temps, track_masses, run_speed_mode)
 
-grid_masses_adjinterp_total, grid_H_abundances_adjinterp_total = interpolate_param(track_H_abundances, track_masses)
-grid_masses_adjinterp_total, grid_He_abundances_adjinterp_total = interpolate_param(track_He_abundances, track_masses)
+grid_masses_adjinterp_total, grid_H_abundances_adjinterp_total = interpolate_param(track_H_abundances, track_masses, run_speed_mode)
+grid_masses_adjinterp_total, grid_He_abundances_adjinterp_total = interpolate_param(track_He_abundances, track_masses, run_speed_mode)
 
-grid_masses_adjinterp_total, grid_12C_abundances_adjinterp_total = interpolate_param(track_12C_abundances, track_masses)
-grid_masses_adjinterp_total, grid_14N_abundances_adjinterp_total = interpolate_param(track_14N_abundances, track_masses)
-grid_masses_adjinterp_total, grid_16O_abundances_adjinterp_total = interpolate_param(track_16O_abundances, track_masses)
+grid_masses_adjinterp_total, grid_12C_abundances_adjinterp_total = interpolate_param(track_12C_abundances, track_masses, run_speed_mode)
+grid_masses_adjinterp_total, grid_14N_abundances_adjinterp_total = interpolate_param(track_14N_abundances, track_masses, run_speed_mode)
+grid_masses_adjinterp_total, grid_16O_abundances_adjinterp_total = interpolate_param(track_16O_abundances, track_masses, run_speed_mode)
 
-grid_masses_adjinterp_total, grid_core_temps_adjinterp_total = interpolate_param(track_core_temps, track_masses)
+grid_masses_adjinterp_total, grid_core_temps_adjinterp_total = interpolate_param(track_core_temps, track_masses, run_speed_mode)
 
-grid_masses_adjinterp_total, grid_mass_loss_rates_adjinterp_total = interpolate_param(track_mass_loss_rates, track_masses)
+grid_masses_adjinterp_total, grid_mass_loss_rates_adjinterp_total = interpolate_param(track_mass_loss_rates, track_masses, run_speed_mode)
 
 def rearrange_grid_array(grid_array):
     '''
