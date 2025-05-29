@@ -1914,7 +1914,7 @@ elapsed_time = et - st
 print('Execution time:', elapsed_time, 'seconds')
 
 if save_output == True:
-    with open(SBmodel_name + '_input.txt', 'w') as inputs_file:
+    with open(SBmodel_name + '/input.txt', 'w') as inputs_file:
         inputs_file.write('M_total = ' + str(M_total) + 'Msol' + '\n')
         inputs_file.write('IMF_exponents = ' + str(IMF_exponents) + '\n')
         inputs_file.write('IMF_mass_limits = ' + str(IMF_mass_limits) + '\n')
