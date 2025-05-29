@@ -47,32 +47,6 @@ plot_colours = False
 
 save_output = False
 
-if Z == 'MWC':
-    !wget https://www.dropbox.com/scl/fi/s2pfp2bhln31im9t7rikz/Z020_pySB99_files.tar.gz?rlkey=x6rbry9j7gwxr83nqclvnt5fo&st=vspkqbns&dl=0
-if Z == 'MW':
-    !wget https://www.dropbox.com/scl/fi/cg3rtei88pbo0x453uss3/Z014_pySB99_files.tar.gz?rlkey=g14unl9czm1pabggh73vsiph5&st=xnw1u2g0&dl=0
-if Z == 'LMC':
-    !wget https://www.dropbox.com/scl/fi/3ncp8ao08igybvafpupmu/Z006_pySB99_files.tar.gz?rlkey=8lx36912iymf40na36wcj6d8m&st=1n2qjd0i&dl=0
-if Z == 'SMC':
-    !wget https://www.dropbox.com/scl/fi/2ii8essm93ms6chmrl79y/Z002_pySB99_files.tar.gz?rlkey=dv8yg8hchq19hz141mqwsg1g1&st=0maml717&dl=0
-if Z == 'IZw18':
-    !wget https://www.dropbox.com/scl/fi/van09gdlw0jhv4zwd61l8/Z0004_pySB99_files.tar.gz?rlkey=dqtxrchat6ci8tmici8dpco69&st=c23w79jl&dl=0
-if Z == 'Z0':
-    !wget https://www.dropbox.com/scl/fi/hbs19pc1nf8jj2i8ybjnq/Z00_pySB99_files.tar.gz?rlkey=mcmid0idndefvmbu8ltkwwgdq&st=aa841zn2&dl=0
-    
-if Z == 'MWC':
-    !tar -xzvf Z020_pySB99_files.tar.gz?rlkey=x6rbry9j7gwxr83nqclvnt5fo&st=vspkqbns&dl=0
-if Z == 'MW':
-    !tar -xzvf Z014_pySB99_files.tar.gz?rlkey=g14unl9czm1pabggh73vsiph5&st=xnw1u2g0&dl=0
-if Z == 'LMC':
-    !tar -xzvf Z006_pySB99_files.tar.gz?rlkey=8lx36912iymf40na36wcj6d8m&st=1n2qjd0i&dl=0
-if Z == 'SMC':
-    !tar -xzvf Z002_pySB99_files.tar.gz?rlkey=dv8yg8hchq19hz141mqwsg1g1&st=0maml717&dl=0
-if Z == 'IZw18':
-    !tar -xzvf Z0004_pySB99_files.tar.gz?rlkey=dqtxrchat6ci8tmici8dpco69&st=c23w79jl&dl=0
-if Z == 'Z0':
-    !tar -xzvf Z00_pySB99_files.tar.gz?rlkey=mcmid0idndefvmbu8ltkwwgdq&st=aa841zn2&dl=0
-    
 '''Load input files based on chosen metallicity and mass limits'''
 if Z =='MWC':
     file_path = 'Z020_pySB99_files/'
