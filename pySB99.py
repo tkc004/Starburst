@@ -35,17 +35,21 @@ plot_spec_with_time = True
 spec_with_time_title = 'Evolution of Z0 SEDs with rotation'
 plot_isochrones = True
 plot_ion_flux = True
-plot_spectral_types = False
-plot_hires_spectra = False
-plot_blackbody_scaling = False
-plot_SN_rate = False
-plot_new_hires = False
+plot_spectral_types = True
+plot_hires_spectra = True
+plot_blackbody_scaling = True
+plot_SN_rate = True
+plot_new_hires = True
 plot_wind = True
-plot_uv_slope = False
-plot_ew = False
-plot_colours = False
+plot_uv_slope = True
+plot_ew = True
+plot_colours = True
 
-save_output = False
+save_output = True
+
+if save_output == True:
+    SBmodel_name = 'pySB_test' #set the output folder name here!
+    os.mkdir(SBmodel_name)
 
 '''Load input files based on chosen metallicity and mass limits'''
 if Z =='MWC':
