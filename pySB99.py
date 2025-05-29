@@ -36,7 +36,7 @@ plot_wind = True
 plot_uv_slope = True
 plot_ew = True
 
-save_output = False
+save_output = True
 
 '''coming soon!'''
 plot_spec_with_time = False
@@ -1912,6 +1912,65 @@ for i in range(len(times_steps)):
 et = time.time()
 elapsed_time = et - st
 print('Execution time:', elapsed_time, 'seconds')
+
+if save_output == True:
+    with open(SBmodel_name + '_input.txt', 'w') as inputs_file:
+        inputs_file.write('M_total = ' + str(M_total) + 'Msol' + '\n')
+        inputs_file.write('IMF_exponents = ' + str(IMF_exponents) + '\n')
+        inputs_file.write('IMF_mass_limits = ' + str(IMF_mass_limits) + '\n')
+        inputs_file.write('run_speed_mode = ' + run_speed_mode + '\n')
+        inputs_file.write('Metallicity input = ' + Z + '\n')
+        inputs_file.write('Spectral library input = ' + SPEC + '\n')
+        if rot == True:
+            inputs_file.write('Rotation input = True' + '\n')
+        if rot == False:
+            inputs_file.write('Rotation input = False' + '\n')
+        if plot_ion_flux == True:
+            inputs_file.write('Ionising flux output choice = True' + '\n')
+        if plot_ion_flux == False:
+            inputs_file.write('Ionising flux output choice = False' + '\n')
+        if plot_wind == True:
+            inputs_file.write('Wind output choice = True' + '\n')
+        if plot_wind == False:
+            inputs_file.write('Wind output choice = False' + '\n')
+        if plot_uv_slope == True:
+            inputs_file.write('UV slope output choice = True' + '\n')
+        if plot_uv_slope == False:
+            inputs_file.write('UV slope output choice = False' + '\n')
+        if plot_ew == True:
+            inputs_file.write('Equivalent width output choice = True' + '\n')
+        if plot_ew == False:
+            inputs_file.write('Equivalent with output output choice = False' + '\n')
+
+else:
+    print('M_total = ' + str(M_total) + 'Msol')   
+    print('IMF_exponents = ' + str(IMF_exponents))
+    print('IMF_mass_limits = ' + str(IMF_mass_limits))
+    print('run_speed_mode = ' + run_speed_mode)
+    print('Metallicity input = ' + Z)
+    print('Spectral library input = ' + SPEC)
+    if rot == True:
+        print('Rotation input = True')
+    if rot == False:
+        print('Rotation input = False')
+    if plot_ion_flux == True:
+        print('Ionising flux output choice = True')
+    if plot_ion_flux == False:
+        print('Ionising flux output choice = False')
+    if plot_wind == True:
+        print('Wind output choice = True')
+    if plot_wind == False:
+        print('Wind output choice = False')
+    if plot_uv_slope == True:
+        print('UV slope output choice = True')
+    if plot_uv_slope == False:
+        print('UV slope output choice = False')
+    if plot_ew == True:
+        print('Equivalent width output choice = True')
+    if plot_ew == False:
+        print('Equivalent with output output choice = False')
+    
+
 
 if plot_ion_flux == True:
 
