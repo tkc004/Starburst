@@ -49,7 +49,7 @@ save_output = False
 
 '''Load input files based on chosen metallicity and mass limits'''
 if Z =='MWC':
-    file_path = 'Z020_pySB99_files/'
+    file_path = 'pySB99_files/Z020_pySB99_files/'
     mass_grid = [300, 200., 150., 120., 85., 60., 40., 32., 25., 20., 15., 12., 9., 7., 5., 4., 3., 2.5, 2., 1.7, 1.5, 1.35, 1.25, 1.1, 1., 0.9, 0.8]
     if IMF_mass_limits[-1] > 300.:
         print('Tracks do not exist at Z=0.20 above 300Msol')
@@ -79,7 +79,7 @@ if Z =='MWC':
     WC_spectra_powr = np.load(file_path + 'WC_spectra_powr_Z020.npy', allow_pickle=True) 
 
 if Z == 'MW':
-    file_path = 'Z014_pySB99_files/'
+    file_path = 'pySB99_files/Z014_pySB99_files/'
     if rot == True:
         mass_grid = [300., 250., 180., 120., 85., 60., 40., 32., 25., 20., 15., 12., 9., 7., 5., 4., 3., 2.5, 2., 1.7, 1.5, 1.35, 1.25, 1.1, 1., 0.9, 0.8]
         if IMF_mass_limits[-1] > 300.:
@@ -115,7 +115,7 @@ if Z == 'MW':
     WC_spectra_powr = np.load(file_path + 'WC_spectra_powr_Z020.npy', allow_pickle=True) 
 
 if Z == 'LMC':
-    file_path = 'Z006_pySB99_files/'
+    file_path = 'pySB99_files/Z006_pySB99_files/'
     mass_grid = [300, 250., 180., 120., 85., 60., 40., 32., 25., 20., 15., 12., 9., 7., 5., 4., 3., 2.5, 2., 1.7, 1.5, 1.35, 1.25, 1.1, 1., 0.9, 0.8]
     if IMF_mass_limits[-1] > 300.:
         print('Tracks do not exist at Z=0.006 above 300Msol')
@@ -147,7 +147,7 @@ if Z == 'LMC':
     WC_spectra_powr = np.load(file_path + 'WC_spectra_powr_Z008.npy', allow_pickle=True) 
 
 if Z == 'SMC':
-    file_path = 'Z002_pySB99_files/'
+    file_path = 'pySB99_files/Z002_pySB99_files/'
     mass_grid = [120., 85., 60., 40., 32., 25., 20., 15., 12., 9., 7., 5., 4., 3., 2.5, 2., 1.7, 1.5, 1.35, 1.25, 1.1, 1., 0.9, 0.8]
     if IMF_mass_limits[-1] > 120.:
         print('Tracks do not exist at Z=0.002 above 120Msol')
@@ -177,7 +177,7 @@ if Z == 'SMC':
     WC_spectra_powr = np.load(file_path + 'WC_spectra_powr_Z004.npy', allow_pickle=True) 
 
 if Z == 'IZw18':
-    file_path = 'Z0004_pySB99_files/'
+    file_path = 'pySB99_files/Z0004_pySB99_files/'
     mass_grid = [120., 85., 60., 40., 32., 25., 20., 15., 12., 9., 7., 5., 4., 3., 2.5, 2., 1.7]
     if IMF_mass_limits[-1] > 120.:
         print('Tracks do not exist at 0.0004 above 120Msol')
@@ -207,7 +207,7 @@ if Z == 'IZw18':
     WC_spectra_powr = np.load(file_path + 'WC_spectra_powr_Z001.npy', allow_pickle=True) 
 
 if Z == 'Z0':
-    file_path = 'Z00_pySB99_files/'
+    file_path = 'pySB99_files/Z00_pySB99_files/'
     if rot == True:
         mass_grid = [120., 85., 60., 40., 30., 20., 15., 12., 9., 7., 5., 4., 3., 2.5, 2., 1.7]
         if IMF_mass_limits[-1] > 120.:
