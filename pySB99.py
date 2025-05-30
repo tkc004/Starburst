@@ -1802,13 +1802,6 @@ for i in range(len(times_steps)):
     population_flux, assigned_flux_scaled = specsyn(assigned_integrated_spectra, specsyn_bbfluxes, assigned_spectra, specsyn_radii, No_stars)
     timestep_vinfs, timestep_windpowers_calc, timestep_windpowers, timestep_windmoms_calc, timestep_windmoms, timestep_windmoms_vink, timestep_vinfs_vink, timestep_mdots_vink, timestep_vescs, timestep_windmoms_leuven, timestep_windmoms_xshootu, timestep_windpowers_xshootu = calc_wind(timestep_temps_final, timestep_lums_final, timestep_masses_final, timestep_mass_loss_rates_final, timestep_H_abundances_final, timestep_12C_abundances_final, timestep_14N_abundances_final, timestep_16O_abundances_final, initial_masses, No_stars, timestep_radii_final, timestep_cnr)
 
-    if i == 0:
-        ion_flux_HWO = []
-        for i in range(len(assigned_flux_scaled)):
-            #ion_flux_test = ionise(assigned_spectra[i][:,0], assigned_spectra[i][:,1], 2)
-            ion_flux_test = ionise(spectrum_wave, assigned_flux_scaled[i], 2)
-            ion_flux_HWO.append(ion_flux_test[1][0])
-
     #spt_temp, spt_lum, spt, lc = spectype(timestep_temps_final, timestep_lums_final)
     population_flux_iterations.append(population_flux)
     population_flux_iterations_send.append(np.log10(population_flux)+20.)
@@ -1941,6 +1934,8 @@ if save_output == True:
             inputs_file.write('Equivalent width output choice = True' + '\n')
         if plot_ew == False:
             inputs_file.write('Equivalent with output output choice = False' + '\n')
+    
+    np.save(SBmodel_name + '/pySB_spectrum.npy', population_flux_iterations_send)
 
 else:
     print('M_total = ' + str(M_total) + 'Msol')   
