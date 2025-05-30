@@ -1935,7 +1935,7 @@ if save_output == True:
         if plot_ew == False:
             inputs_file.write('Equivalent with output output choice = False' + '\n')
     
-    np.save(SBmodel_name + '/pySB_spectrum.npy', population_flux_iterations_send)
+    np.save(SBmodel_name + '/pySB_SEDs.npy', population_flux_iterations_send)
 
 else:
     print('M_total = ' + str(M_total) + 'Msol')   
