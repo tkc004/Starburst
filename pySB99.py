@@ -1936,7 +1936,7 @@ if save_output == True:
             inputs_file.write('Equivalent with output output choice = False' + '\n')
     
     np.save(SBmodel_name + '/pySB_SEDs.npy', np.column_stack((population_flux_iterations_send, population_flux_total_iterations)))
-
+    np.savetxt(SBmodel_name + '/SED_wavelength.txt', spectrum_wave)
 else:
     print('M_total = ' + str(M_total) + 'Msol')   
     print('IMF_exponents = ' + str(IMF_exponents))
